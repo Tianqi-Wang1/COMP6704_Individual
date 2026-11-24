@@ -1,0 +1,38 @@
+{
+  "total_fits": 270,
+  "benchmark_instances": 27,
+  "common_instances": 18,
+  "capped_fits": 9,
+  "capped_fits_by_dataset": {
+    "eurosat": 3,
+    "dtd": 3,
+    "oxford_pets": 3
+  },
+  "fastest_to_tolerance": {
+    "APG": 15,
+    "ADMM": 12
+  },
+  "apg_scan_fits": 216,
+  "max_within_instance_objective_spread": 7.299897388790555e-06,
+  "max_within_instance_test_spread_pp": 0.17730496453900457,
+  "pgd_capped_shots": [
+    16
+  ],
+  "pgd_capped_gap_min": 1.416748575289344e-05,
+  "pgd_capped_gap_max": 5.512696940765926e-05,
+  "pgd_capped_max_violation": 6.938893903907228e-18,
+  "all_alpha_validation_ties": {
+    "text": 15,
+    "random": 25
+  },
+  "text_selected_alpha_counts": {
+    "0.0": 20,
+    "1.0": 5,
+    "0.5": 1,
+    "0.25": 1
+  },
+  "text_objective_nonincrease_count": 27,
+  "max_alpha_mean_accuracy_spread_pp": 0.33490937746258,
+  "macro_text_minus_unconstrained_pp": -0.05758660779160133,
+  "macro_text_minus_random_pp": -0.036630620561626394
+}

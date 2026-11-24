@@ -1,0 +1,4 @@
+solver,successful_instances,benchmark_instances,common_instances,median_seconds,median_grad_evals,paired_median_speedup
+PGD,18,27,18,2.375273633748293,8878.0,1.0
+APG,27,27,18,0.2602237854152918,871.0,8.994372326320544
+ADMM,27,27,18,0.4229842275381088,531.5,5.535388623513073
