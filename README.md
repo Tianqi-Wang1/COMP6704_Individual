@@ -104,29 +104,6 @@ python comp6704_clip/run_experiment.py \
 
 Repeat with `dtd.npz` and `oxford_pets.npz`, changing the output dataset name accordingly. Once compatible features are available, these solver runs use the CPU and do not require the external TCOC checkout or a GPU. The standalone experiment script defaults to **3,000** iterations; keep the explicit `--max-iter 10000` option when matching the report.
 
-## Optimization problem
-
-Let $x_i$ be a fixed normalized image feature, $W_0$ the initial normalized text classifier, and $D$ a trainable class-wise correction. The logits are
-
-$$z_i(D)=s(W_0+D)^\top x_i.$$
-
-We solve
-
-$$\min_D\;\frac{1}{n}\sum_{i=1}^{n}\operatorname{CE}(z_i(D),y_i)+\frac{\lambda}{2}\lVert D\rVert_F^2
-\quad\text{subject to}\quad\lVert U_r^\top D\rVert_F\leq\epsilon.$$
-
-$U_r$ contains the leading left singular vectors of the uncentered text classifier. The radius is calibrated from a training-only regularized unconstrained solution:
-
-$$\epsilon=\alpha\lVert U_r^\top D_{\mathrm{free}}\rVert_F.$$
-
-The corrected weights are **not renormalized**, preserving affine logits and convexity. Positive quadratic regularization makes the objective strongly convex. Here, `--rank 4` specifies the constrained subspace dimension; it does not impose a rank-four factorization on $D$.
-
-- **PGD:** gradient update followed by closed-form projection.
-- **APG:** FISTA extrapolation with the same step size and projection.
-- **ADMM:** split the projected correction into an auxiliary variable and use warm-started L-BFGS-B for the smooth subproblem.
-
-All methods start from zero. A fit is successful only when both the certified objective suboptimality upper bound and the original iterate's constraint violation are at most $10^{-5}$. The final classifier uses the projected feasible correction.
-
 ## Experimental protocol
 
 | Setting | Value |
